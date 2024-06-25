@@ -25,3 +25,9 @@
 !/.config/hypr/hyprlock.conf
 !/.config/hypr/hyprpaper.conf
 !/.config/hypr/monitors.conf
+
+# Waybar
+!/.config/waybar
+/.config/waybar/*
+!/.config/waybar/config.jsonc
+!/.config/waybar/modules

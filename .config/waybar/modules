@@ -1,0 +1,174 @@
+{
+"hyprland/workspaces": {
+	"active-only": true,
+	"format": "{name} {icon}",
+	"on-click": "activate",
+	"on-scroll-up": "hyprctl dispatch workspace e+1",
+	"on-scroll-down": "hyprctl dispatch workspace e-1",
+	"persistent-workspaces": {
+		"1": [],
+		"2": [],
+		"3": [],
+		"4": [],
+	},
+	"format-icons": {
+		"urgent": "",
+    		"active": "",
+		"default": "-"
+	},
+},
+"group/motherboard": {
+	"orientation": "horizontal",
+	"modules": [
+		"cpu",
+		"memory",
+	]
+},
+"cpu": {
+	"format": "{avg_frequency}GHz 󰍛",
+	"interval": 1,
+	"min-length": 5,
+	"on-click": "kitty sh -c 'htop'",
+},
+"memory": {
+	"interval": 10,
+	"format": "{used:0.1f}GiB 󰾆",
+	"on-click": "kitty sh -c 'htop'",
+	"tooltip-format": "Ram: {used:0.1f}GiB/{total:0.1f}Gib | Swap: {swapUsed:0.1f}Gib/{swapTotal:0.1f}Gib",
+},
+"tray": {
+    "icon-size": 21,
+    "spacing": 10
+},
+"group/audio": {
+	"orientation": "horizontal",
+	"modules": [
+		"pulseaudio#output",
+		"pulseaudio#input",
+	],
+},
+"pulseaudio#output": {
+	"format": "{volume}% {icon}",
+	"format-bluetooth": "{volume}% {icon}",
+	"format-muted": "",
+	"format-icons": {
+		"headphone": "",
+		"hands-free": "",
+		"headset": "",
+		"phone": "",
+		"portable": "",
+		"car": "",
+		"default": [
+			"", "", "󰕾", ""
+		],
+	},
+	"scroll-step": 5.0,
+	"on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+	"on-click-right": "pavucontrol -t 3",
+	"ignored-sinks": ["Easy Effects Sink"],
+	"tooltip": false,
+},
+"pulseaudio#input": {
+	"format": "{format_source}",
+	"format-source": " {volume}%",
+	"format-source-muted": "",
+	"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
+	"on-click-right": "pavucontrol -t 4",
+	"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
+	"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
+	"tooltip-format": "{source_desc} | {source_volume}%",
+	"scroll-step": 5,
+},
+"group/connections": {
+	"orientation": "horizontal",
+	"modules": [
+		"network",
+		"bluetooth",
+	]
+},
+"network": {
+	"format": "{ifname}",
+	"format-wifi": "{icon}",
+	"format-ethernet": "󰌘",
+	"format-disconnected": "󰌙",
+	"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
+	"format-linked": "󰈁 {ifname} (No IP)",
+	"tooltip-format-wifi": "{essid} {icon} {signalStrength}%",
+	"tooltip-format-ethernet": "{ifname} 󰌘",
+	"tooltip-format-disconnected": "󰌙 Disconnected",
+	"max-length": 50,
+	"format-icons": [
+		"󰤯", "󰤟", "󰤢", "󰤥", "󰤨"
+	],
+	"on-click": "nm-connection-editor"
+},
+"bluetooth": {
+	"format": "",
+	"format-disabled": "󰂳",
+	"format-connected": "󰂱 {num_connections}",
+	"tooltip-format": " {device_alias}",
+	"tooltip-format-connected": "{device_enumerate}",
+	"tooltip-format-enumerate-connected": " {device_alias} 󰂄{device_battery_percentage}%",
+	"tooltip": true,
+	"min-length": 4,
+	"on-click": "blueman-manager",
+},
+"clock": {
+	"interval": 1,
+	"format": "{:%I:%M:%S %p | %A, %d %B %Y}", // AM PM format
+	"tooltip-format": "<tt><small>{calendar}</small></tt>",
+	"calendar": {
+		"mode": "months",
+		"weeks-pos": "right",
+		"on-scroll": 1,
+		"format": {
+			"months": "<span color='#ffead3'><b>{}</b></span>",
+			"days": "<span color='#ecc6d9'><b>{}</b></span>",
+			"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+			"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+			"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+		}
+	}
+},
+"group/laptop": {
+	"orientation": "horizontal",
+	"modules": [
+		"backlight",
+		"battery",
+	]
+},
+"backlight": {
+	"format": "{icon}",
+	"format-icons": [
+		"",
+		"",
+		"",
+		"󰃝",
+		"󰃞",
+		"󰃟",
+		"󰃠"
+	],
+	"tooltip-format": "{percent}%",
+	"icon-size": 10,
+	"on-scroll-up": "brightnessctl set 5%+ && hyprctl notify $icon 2000 Brightness:$current%",
+	"on-scroll-down": "brightnessctl set 5%-",
+},
+"battery": {
+	"full-at": 100,
+	"states": {
+		"good": 95,
+		"warning": 30,
+		"critical": 15
+	},
+	"format": "{icon}",
+	"format-charging": "",
+	"format-plugged": "󱘖",
+	"format-full": "󰁹",
+	"format-icons": [
+		"󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
+	],
+	"format-time": "{H}h {M}min",
+	"tooltip": true,
+	"tooltip-format": "{time} {capacity}% {power}W",
+},
+}
