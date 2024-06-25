@@ -6,3 +6,6 @@
 !.bashrc
 !.bash_profile
 
+# Zsh
+!.zshrc
+
