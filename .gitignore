@@ -9,3 +9,10 @@
 # Zsh
 !.zshrc
 
+!/.config
+/.config/*
+
+# Kitty
+!/.config/kitty
+/.config/kitty/*
+!/.config/kitty/kitty.conf
