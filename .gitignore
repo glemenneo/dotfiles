@@ -16,3 +16,12 @@
 !/.config/kitty
 /.config/kitty/*
 !/.config/kitty/kitty.conf
+
+# Hyprland
+!/.config/hypr
+/.config/hypr/*
+!/.config/hypr/hyprland.conf
+!/.config/hypr/hypridle.conf
+!/.config/hypr/hyprlock.conf
+!/.config/hypr/hyprpaper.conf
+!/.config/hypr/monitors.conf
