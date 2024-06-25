@@ -12,6 +12,11 @@
 !/.config
 /.config/*
 
+# Neovim
+!/.config/nvim
+/.config/nvim/*
+!/.config/nvim/init.lua
+
 # Kitty
 !/.config/kitty
 /.config/kitty/*
