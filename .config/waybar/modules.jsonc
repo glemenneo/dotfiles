@@ -38,12 +38,12 @@
 		"format": "{avg_frequency}GHz 󰍛",
 		"interval": 1,
 		"min-length": 5,
-		"on-click": "kitty sh -c 'htop'",
+		"on-click": "kitty sh -c 'btop'",
 	},
 	"memory": {
 		"interval": 1,
 		"format": "{used:0.1f}GiB 󰾆",
-		"on-click": "kitty sh -c 'htop'",
+		"on-click": "kitty sh -c 'btop'",
 		"tooltip-format": "Ram: {used:0.1f}GiB/{total:0.1f}Gib | Swap: {swapUsed:0.1f}Gib/{swapTotal:0.1f}Gib",
 	},
 	"network#speed": {
@@ -65,7 +65,7 @@
 			"󰤥",
 			"󰤨",
 		],
-		"on-click": "kitty sh -c 'htop'",
+		"on-click": "kitty sh -c 'btop'",
 	},
 	"tray": {
 		"icon-size": 20,
