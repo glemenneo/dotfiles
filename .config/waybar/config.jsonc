@@ -4,7 +4,7 @@
 	"exclusive": true,
 	"passthrough": false,
 	"position": "top",
-	"spacing": 4,
+	"spacing": 0,
 	"fixed-center": true,
 	"ipc": true,
 	"margin-top": 0,
@@ -13,13 +13,14 @@
 	"reload_style_on_change": true,
 	"modules-left": [
 		"hyprland/workspaces",
-		"mpris",
+		"hyprland/window",
 	],
 	"modules-center": [
 		"clock"
 	],
 	"modules-right": [
 		"group/motherboard",
+		"mpris",
 		"gamemode",
 		"idle_inhibitor",
 		"group/audio",

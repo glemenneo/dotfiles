@@ -31,48 +31,96 @@
 @define-color orange_b #fe8010;
 
 window#waybar {
-	background: rgba(40, 40, 40, 1);
-	border-bottom: 3px solid rgba(69, 133, 136, 1);
+	background: @background;
 	color: @white_b;
+}
+
+tooltip {
+	background: @background;
+	border: 1px groove @white_b;
+	border-radius: 5px;
 }
 
 #workspaces button {
 	padding: 0 5px;
 	background: transparent;
 	color: @white_b;
-	border-bottom: 3px solid transparent;
 }
 
-#workspaces button.focused {
-	background: @blue;
-	border-bottom: 3px solid @blue;
-}
-
-#mode,
-#clock,
-#battery {
+#window {
+	background: @background;
+	color: @white_b;
 	padding: 0 10px;
-	margin: 0 5px;
+	border: 1px groove @white_b;
+	border-radius: 5px;
 }
 
-#mode {
-	background: @red;
-	border-bottom: 3px solid @white_b;
+/* make window module transparent when no windows present */
+window#waybar.empty #window {
+	background-color: transparent;
+}
+
+#mpris {
+	background: @background;
+	color: @white_b;
+	padding: 0 10px;
+}
+
+#cpu {
+	background-color: @background;
+	color: @white_b;
+	padding: 0 6px;
+}
+
+#memory {
+	background-color: @background;
+	color: @white_b;
+	padding: 0 6px;
+}
+
+#bluetooth {
+	background-color: @background;
+	color: @white_b;
+	font-size: 14px;
+}
+
+#network {
+	background-color: @background;
+	color: @white_b;
+	padding: 0 7px;
+	font-size: 20px;
+}
+
+#network.speed {
+	font-size: 16px;
 }
 
 #clock {
-	background-color: @black_b;
+	font-weight: bold;
+	background-color: @background;
 	color: @white_b;
 }
 
 #battery {
-	background-color: @white_b;
-	color: @background;
+	font-size: 12px;
+	padding: 0 8px;
+	background-color: @background;
+	color: @white_b;
 }
 
 #battery.charging {
-	color: @background;
 	background-color: @green;
+	color: @background;
+}
+
+#battery.warning:not(.charging) {
+	background-color: @red;
+	color: @white_b;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 @keyframes blink {
@@ -82,27 +130,60 @@ window#waybar {
 	}
 }
 
-#idle_inhibitor,
-#pulseaudio,
-#custom-openvpn,
-#network,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#battery,
-#clock,
 #tray {
-	padding: 0 6px;
-	margin: 0 3px;
+	padding: 0 5px;
+	background: @background;
+	border: 1px groove @white_b;
+	border-radius: 5px;
 }
 
-#battery.warning:not(.charging) {
-	background: @red;
+#backlight {
+	font-size: 22px;
+	padding: 0 9px;
+	background-color: @background;
 	color: @white_b;
-	animation-name: blink;
-	animation-duration: 0.5s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
+}
+
+#pulseaudio {
+	background-color: @background;
+	color: @white_b;
+}
+
+#pulseaudio.volume {
+	font-size: 22px;
+	padding: 0 9px;
+}
+
+#pulseaudio.volume.muted {
+	background-color: @red;
+}
+
+#pulseaudio.microphone {
+	font-size: 14px;
+	padding: 0 8px;
+}
+
+#pulseaudio.microphone.source-muted {
+	background-color: @yellow;
+}
+
+#idle_inhibitor {
+	font-size: 24px;
+	padding: 0 8px;
+	background-color: @background;
+	color: @white_b;
+}
+
+#idle_inhibitor.activated {
+	background-color: @blue;
+}
+
+#gamemode {
+	padding: 0 2px 0 6px;
+	background-color: @background;
+	color: @white_b;
+}
+
+#gamemode.running {
+	background-color: @orange;
 }
