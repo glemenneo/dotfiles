@@ -57,7 +57,7 @@ tooltip {
 
 /* make window module transparent when no windows present */
 window#waybar.empty #window {
-	background-color: transparent;
+	border: none;
 }
 
 #mpris {
