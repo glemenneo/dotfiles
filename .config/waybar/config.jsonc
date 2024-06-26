@@ -1,29 +1,30 @@
 {
-"include": "~/.config/waybar/modules",
-"layer": "top",
-"exclusive": true,
-"passthrough": false,
-"position": "top",
-"spacing": 3,
-"fixed-center": true,
-"ipc": true,
-"margin-top": 3,
-"margin-left": 8,
-"margin-right": 8,
-
-"modules-left": [
-	"hyprland/workspaces",
+	"include": "~/.config/waybar/modules.jsonc",
+	"layer": "top",
+	"exclusive": true,
+	"passthrough": false,
+	"position": "top",
+	"spacing": 4,
+	"fixed-center": true,
+	"ipc": true,
+	"margin-top": 0,
+	"margin-left": 0,
+	"margin-right": 0,
+	"reload_style_on_change": true,
+	"modules-left": [
+		"hyprland/workspaces",
+		"mpris",
 	],
-
-"modules-center": [
-	"clock"
-	], 
-
-"modules-right": [
-	"group/audio",
-	"group/motherboard",
-	"group/laptop",
-	"group/connections",
-	"tray",
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"group/motherboard",
+		"gamemode",
+		"idle_inhibitor",
+		"group/audio",
+		"group/laptop",
+		"group/connections",
+		"tray",
 	],
 }

@@ -35,4 +35,5 @@
 !/.config/waybar
 /.config/waybar/*
 !/.config/waybar/config.jsonc
-!/.config/waybar/modules
+!/.config/waybar/modules.jsonc
+!/.config/waybar/style.css
