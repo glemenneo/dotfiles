@@ -1,7 +1,46 @@
 {
+	"group/boot": {
+		"orientation": "inherit",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true,
+		},
+		"modules": [
+			"custom/arch-icon",
+			"custom/shutdown",
+			"custom/reboot",
+			"custom/lock",
+			"custom/quit",
+		],
+	},
+	"custom/arch-icon": {
+		"format": "",
+		"tooltip": false,
+		"on-click": "kitty sh -c 'neofetch'",
+	},
+	"custom/shutdown": {
+		"format": "",
+		"tooltip-format": "Shutdown",
+		"on-click": "shutdown now"
+	},
+	"custom/reboot": {
+		"format": "󰜉",
+		"tooltip-format": "Restart",
+		"on-click": "reboot"
+	},
+	"custom/lock": {
+		"format": "󰍁",
+		"tooltip-format": "Lock",
+		"on-click": "swaylock"
+	},
+	"custom/quit": {
+		"format": "󰗼",
+		"tooltip-format": "Logout",
+		"on-click": "hyprctl dispatch exit"
+	},
 	"hyprland/workspaces": {
 		"active-only": true,
-		"format": "{name} {icon}",
+		"format": "{name}",
 		"on-click": "activate",
 		"on-scroll-up": "hyprctl dispatch workspace e+1",
 		"on-scroll-down": "hyprctl dispatch workspace e-1",
@@ -12,13 +51,16 @@
 			"4": [],
 		},
 		"format-icons": {
-			"urgent": "",
-			"active": "",
-			"default": "-"
+			"active": "",
+			"default": "",
+			"empty": "",
+			"persistent": "",
+			"special": "",
+			"urgent": "",
 		},
 	},
 	"hyprland/window": {
-		"format": "{title}",
+		"format": "{class}",
 		"icon": true,
 		"icon-size": 20,
 		"rewrite": {
@@ -29,22 +71,22 @@
 	"group/motherboard": {
 		"orientation": "horizontal",
 		"modules": [
-			"network#speed",
+			/* "network#speed", */
 			"cpu",
 			"memory",
 		]
 	},
 	"cpu": {
-		"format": "{avg_frequency}GHz 󰍛",
+		"format": "{avg_frequency:0.2f}GHz 󰍛",
 		"interval": 1,
 		"min-length": 5,
 		"on-click": "kitty sh -c 'btop'",
 	},
 	"memory": {
 		"interval": 1,
-		"format": "{used:0.1f}GiB 󰾆",
+		"format": "{used:0.2f}GiB 󰾆",
 		"on-click": "kitty sh -c 'btop'",
-		"tooltip-format": "Ram: {used:0.1f}GiB/{total:0.1f}Gib | Swap: {swapUsed:0.1f}Gib/{swapTotal:0.1f}Gib",
+		"tooltip-format": "Ram: {used:0.2f}GiB/{total:0.2f}Gib | Swap: {swapUsed:0.2f}Gib/{swapTotal:0.2f}Gib",
 	},
 	"network#speed": {
 		"name": "speed",
@@ -73,6 +115,10 @@
 	},
 	"group/audio": {
 		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true,
+		},
 		"modules": [
 			"pulseaudio#volume",
 			"pulseaudio#microphone",
@@ -80,9 +126,9 @@
 	},
 	"pulseaudio#volume": {
 		"name": "volume",
-		"format": "{icon}",
-		"format-bluetooth": "{icon}",
-		"format-muted": "",
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{icon} {volume}%",
+		"format-muted": " Muted",
 		"format-icons": {
 			"headphone": "",
 			"hands-free": "",
@@ -103,21 +149,25 @@
 		"ignored-sinks": [
 			"Easy Effects Sink"
 		],
-		"tooltip-format": "{desc} | {volume}%",
+		"tooltip-format": "{desc}",
 	},
 	"pulseaudio#microphone": {
 		"name": "microphone",
 		"format": "{format_source}",
-		"format-source": "",
-		"format-source-muted": "",
+		"format-source": " {volume}%",
+		"format-source-muted": " Muted",
 		"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
 		"on-click-right": "pavucontrol -t 4",
 		"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
 		"on-scroll-down": "pactl set-source-volume @DEFAULT_SOURCE@ -5%",
-		"tooltip-format": "{source_desc} | {volume}%",
+		"tooltip-format": "{source_desc}",
 	},
 	"group/connections": {
 		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true,
+		},
 		"modules": [
 			"network",
 			"bluetooth",
@@ -126,13 +176,13 @@
 	"network": {
 		"name": "status",
 		"format": "{ifname}",
-		"format-wifi": "{icon}",
+		"format-wifi": "{icon} {signalStrength}%",
 		"format-ethernet": "󰌘",
 		"format-disconnected": "󰌙",
-		"format-linked": "󰈁 {ifname} (No IP)",
+		"format-linked": "󰈁 {ifname}",
 		"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
-		"tooltip-format-wifi": "{essid} | {signalStrength}%",
-		"tooltip-format-ethernet": "{ifname}",
+		"tooltip-format-wifi": "{essid}  {bandwidthUpBits}  {bandwidthDownBits}",
+		"tooltip-format-ethernet": "{ifname}  {bandwidthUpBits}  {bandwidthDownBits}",
 		"tooltip-format-disconnected": "Disconnected",
 		"max-length": 50,
 		"format-icons": [
@@ -145,8 +195,8 @@
 		"on-click": "nm-connection-editor"
 	},
 	"bluetooth": {
-		"format": "",
-		"format-disabled": "󰂳",
+		"format": " {status}",
+		"format-disabled": "󰂳 Off",
 		"format-connected": "󰂱 {num_connections}",
 		"tooltip-format": "{device_alias}",
 		"tooltip-format-connected": "{device_enumerate}",
@@ -159,7 +209,7 @@
 	},
 	"clock": {
 		"interval": 1,
-		"format": "{:%A, %d %B %Y ⏲ %I:%M:%S %p}", // AM PM format
+		"format": "{:%I:%M:%S %p}", // AM PM format
 		"tooltip-format": "<tt><small>{calendar}</small></tt>",
 		"calendar": {
 			"mode": "month",
@@ -176,13 +226,17 @@
 	},
 	"group/laptop": {
 		"orientation": "horizontal",
+		"drawer": {
+			"transition-duration": 500,
+			"transition-left-to-right": true,
+		},
 		"modules": [
-			"backlight",
 			"battery",
+			"backlight",
 		]
 	},
 	"backlight": {
-		"format": "{icon}",
+		"format": "{icon} {percent}%",
 		"format-icons": [
 			"",
 			"",
@@ -192,8 +246,7 @@
 			"󰃟",
 			"󰃠"
 		],
-		"tooltip-format": "Backlight: {percent}%",
-		"icon-size": 10,
+		"tooltip": false,
 		"on-scroll-up": "brightnessctl set 5%+ && hyprctl notify $icon 2000 Brightness:$current%",
 		"on-scroll-down": "brightnessctl set 5%-",
 	},
@@ -204,10 +257,10 @@
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{icon}",
-		"format-charging": "",
-		"format-plugged": "󱘖",
-		"format-full": "󰁹",
+		"format": "{icon} {capacity}%",
+		"format-charging": " {capacity}%",
+		"format-plugged": "󱘖 {capacity}%",
+		"format-full": "󰁹 {capacity}%",
 		"format-icons": [
 			"󰂎",
 			"󰁺",
@@ -223,7 +276,7 @@
 		],
 		"format-time": "{H}h {M}min",
 		"tooltip": true,
-		"tooltip-format": "{capacity}% | {power}W {time}",
+		"tooltip-format": "{power}W {time}",
 	},
 	"mpris": {
 		"interval": 1,
@@ -257,19 +310,19 @@
 			"activated": "",
 			"deactivated": "",
 		},
-		"tooltip-format-activated": "Idle active",
-		"tooltip-format-deactivated": "Idle inactive",
+		"tooltip-format-activated": "Idle inactive",
+		"tooltip-format-deactivated": "Idle active",
 	},
 	"gamemode": {
 		"format": "{glyph}",
 		"format-alt": "{glyph}",
 		"glyph": "",
-		"hide-not-running": false,
+		"hide-not-running": true,
 		"use-icon": true,
 		"icon-name": "input-gaming-symbolic",
 		"icon-spacing": 4,
 		"icon-size": 15,
 		"tooltip": true,
-		"tooltip-format": "Games running: {count}"
+		"tooltip-format": "Gamemode active",
 	}
 }

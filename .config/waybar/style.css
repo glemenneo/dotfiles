@@ -6,53 +6,165 @@
 	min-height: 0;
 }
 
-@define-color background #282828;
-@define-color foreground #ebdbb2;
-@define-color black #282828;
-@define-color red #cc241d;
-@define-color green #98971a;
-@define-color yellow #d79921;
-@define-color blue #458588;
-@define-color magenta #b16286;
-@define-color cyan #689d6a;
-@define-color white #a89984;
-@define-color aqua #689d6a;
-@define-color orange #d65d0e;
+/* Tokyo Night Colour Scheme */
+@define-color light_crimson #f7768e;
+@define-color atomic_tangerine #ff9e64;
+@define-color fawn #e0af68;
+@define-color pistachio #9ece6a;
+@define-color pearl_aqua #73daca;
+@define-color celeste #b4f9f8;
+@define-color battery_charged_blue #2ac3de;
+@define-color light_sky_blue #7dcfff;
+@define-color french_sky_blue #7aa2f7;
+@define-color pale_violet #bb9af7;
+@define-color vodka #c0caf5;
+@define-color wild_blue_yonder #a9b1d6;
+@define-color blue_bell #9aa5ce;
+@define-color pastel_gray #cfc9c2;
+@define-color ucla_blue #565f89;
+@define-color police_blue #414868;
+@define-color yankees_blue #24283b;
+@define-color dark_jungle_green #1a1b26;
 
-@define-color magenta_b #d3869b;
-@define-color cyan_b #8ec07c;
-@define-color yellow_b #fabd2f;
-@define-color white_b #ebdbb2;
-@define-color black_b #928374;
-@define-color red_b #fb4934;
-@define-color green_b #b8bb26;
-@define-color blue_b #83a598;
-@define-color aqua_b #8ec07c;
-@define-color orange_b #fe8010;
+@define-color quinacridone_magenta #8c4351;
+@define-color chestnut #965027;
+@define-color golden_brown #8f5e15;
+@define-color dark_moss_green #485e30;
+@define-color dark_slate_gray #33635c;
+@define-color blue_sapphire #166775;
+@define-color dark_cerulean #0f4b6e;
+@define-color yinmin_blue #34548a;
+@define-color cyber_grape #5a4a78;
+@define-color charcoal #343b58;
+@define-color black_coral #565a6e;
+@define-color coffee #634f30;
+@define-color chinese_black #0f0f14;
+@define-color manatee #9699a3;
+@define-color light_silver #d5d6db;
+
+@define-color arch_logo #2092D0;
+
+/* @define-color background @theme_base_color; */
+@define-color background @yankees_blue;
+@define-color foreground @blue_bell;
+@define-color text_light @vodka;
+@define-color text_dark @background;
+
+@define-color base #1e1e2e;
+@define-color mantle #181825;
+@define-color crust #11111b;
+
+@define-color subtext0 #a6adc8;
+@define-color subtext1 #bac2de;
+
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color surface2 #585b70;
+
+@define-color overlay0 #6c7086;
+@define-color overlay1 #7f849c;
+@define-color overlay2 #9399b2;
+
+@keyframes blink {
+	to {
+		background-color: @pastel_gray;
+		color: @background;
+	}
+}
 
 window#waybar {
-	background: @background;
-	color: @white_b;
+	background: transparent;
 }
 
 tooltip {
 	background: @background;
-	border: 1px groove @white_b;
-	border-radius: 5px;
+	color: @text_light;
+	border-radius: 10px;
+}
+
+.modules-right {
+	background-color: @background;
+	border-radius: 10px;
+	padding: 10px 10px;
+}
+
+
+.modules-center {
+	background-color: transparent;
+}
+
+
+.modules-left {
+	background-color: @background;
+	border-radius: 10px;
+	padding: 10px 10px;
+}
+
+#custom-arch-icon {
+	font-size: 24px;
+	background-color: @light_silver;
+	color: @arch_logo;
+	padding: 0 14px;
+	border-radius: 10px;
+}
+
+#custom-shutdown {
+	background: @light_crimson;
+	color: @text_dark;
+	padding: 0 14px;
+	border-radius: 10px;
+}
+
+#custom-reboot {
+	background: @pistachio;
+	color: @text_dark;
+	padding: 0 14px;
+	border-radius: 10px;
+}
+
+#custom-lock {
+	background: @fawn;
+	color: @text_dark;
+	padding: 0 14px;
+	border-radius: 10px;
+}
+
+#custom-quit {
+	background: @light_sky_blue;
+	color: @text_dark;
+	padding: 0 14px;
+	border-radius: 10px;
 }
 
 #workspaces button {
-	padding: 0 5px;
-	background: transparent;
-	color: @white_b;
+	border: 1px groove @vodka;
+	border-radius: 10px;
+	background: @background;
+	color: @text_light;
+	margin: 0 2px;
+}
+
+#workspaces button.active {
+	background: @french_sky_blue;
+	color: @text_dark;
+	transition: background 0.5s, color 0.5s;
+}
+
+#workspaces button.urgent {
+	background: @light_crimson;
+	color: @text_dark;
+	animation-name: blink;
+	animation-duration: 0.5s;
+	animation-timing-function: steps(12);
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
 }
 
 #window {
-	background: @background;
-	color: @white_b;
+	background: @light_silver;
+	color: @text_dark;
+	border-radius: 10px;
 	padding: 0 10px;
-	border: 1px groove @white_b;
-	border-radius: 5px;
 }
 
 /* make window module transparent when no windows present */
@@ -61,34 +173,45 @@ window#waybar.empty #window {
 }
 
 #mpris {
-	background: @background;
-	color: @white_b;
+	background: @light_silver;
+	color: @text_dark;
 	padding: 0 10px;
+	border-radius: 10px;
 }
 
 #cpu {
-	background-color: @background;
-	color: @white_b;
-	padding: 0 6px;
+	background-color: @celeste;
+	color: @text_dark;
+	padding: 0 10px;
+	border-radius: 10px;
+	margin: 0 4px 0 0;
 }
 
 #memory {
-	background-color: @background;
-	color: @white_b;
-	padding: 0 6px;
+	background-color: @light_sky_blue;
+	color: @text_dark;
+	padding: 0 10px;
+	border-radius: 10px;
+	margin: 0 0 0 4px;
 }
 
 #bluetooth {
-	background-color: @background;
-	color: @white_b;
-	font-size: 14px;
+	background-color: @light_crimson;
+	color: @text_dark;
+	border-radius: 10px;
+	padding: 0 10px;
+	transition: background 0.5s, color 0.5s;
+}
+
+#bluetooth.on {
+	background-color: @light_sky_blue;
 }
 
 #network {
-	background-color: @background;
-	color: @white_b;
-	padding: 0 7px;
-	font-size: 20px;
+	background-color: @pistachio;
+	color: @text_dark;
+	border-radius: 10px;
+	padding: 0 10px;
 }
 
 #network.speed {
@@ -96,26 +219,27 @@ window#waybar.empty #window {
 }
 
 #clock {
+	background-color: @pastel_gray;
+	color: @text_dark;
+	border-radius: 10px;
 	font-weight: bold;
-	background-color: @background;
-	color: @white_b;
+	margin: 8px 0;
+	padding: 0 8px;
 }
 
 #battery {
-	font-size: 12px;
-	padding: 0 8px;
-	background-color: @background;
-	color: @white_b;
+	padding: 0 10px;
+	border-radius: 10px;
+	background-color: @battery_charged_blue;
+	color: @text_dark;
 }
 
 #battery.charging {
-	background-color: @green;
-	color: @background;
+	background-color: @atomic_tangerine;
 }
 
 #battery.warning:not(.charging) {
-	background-color: @red;
-	color: @white_b;
+	background-color: @light_crimson;
 	animation-name: blink;
 	animation-duration: 0.5s;
 	animation-timing-function: linear;
@@ -123,67 +247,61 @@ window#waybar.empty #window {
 	animation-direction: alternate;
 }
 
-@keyframes blink {
-	to {
-		background-color: @white_b;
-		color: @background;
-	}
-}
-
 #tray {
-	padding: 0 5px;
+	padding: 0 10px;
 	background: @background;
-	border: 1px groove @white_b;
-	border-radius: 5px;
+	border: 1px groove @vodka;
+	border-radius: 10px;
 }
 
 #backlight {
-	font-size: 22px;
-	padding: 0 9px;
-	background-color: @background;
-	color: @white_b;
+	padding: 1px 10px 0px 10px;
+	background-color: @fawn;
+	color: @text_dark;
+	border-radius: 10px;
 }
 
 #pulseaudio {
+	color: @text_dark;
 	background-color: @background;
-	color: @white_b;
+	padding: 0 10px;
+	border-radius: 10px;
+	transition: background 0.5s, color 0.5s;
 }
 
 #pulseaudio.volume {
-	font-size: 22px;
-	padding: 0 9px;
+	background-color: @pale_violet;
 }
 
 #pulseaudio.volume.muted {
-	background-color: @red;
+	background-color: @light_crimson;
 }
 
 #pulseaudio.microphone {
-	font-size: 14px;
-	padding: 0 8px;
+	background-color: @wild_blue_yonder;
 }
 
 #pulseaudio.microphone.source-muted {
-	background-color: @yellow;
+	background-color: @light_crimson;
 }
 
 #idle_inhibitor {
-	font-size: 24px;
-	padding: 0 8px;
-	background-color: @background;
-	color: @white_b;
+	padding: 0 10px;
+	font-size: 20px;
+	background-color: @light_crimson;
+	color: @text_dark;
+	border-radius: 10px;
+	transition: background 0.5s, color 0.5s;
 }
 
 #idle_inhibitor.activated {
-	background-color: @blue;
+	background-color: @ucla_blue;
+	color: @text_light;
 }
 
 #gamemode {
-	padding: 0 2px 0 6px;
-	background-color: @background;
-	color: @white_b;
-}
-
-#gamemode.running {
-	background-color: @orange;
+	padding: 0 6px 0 10px;
+	background-color: @pearl_aqua;
+	color: @text_dark;
+	border-radius: 10px;
 }
