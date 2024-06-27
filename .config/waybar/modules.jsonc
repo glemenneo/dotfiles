@@ -126,9 +126,9 @@
 	},
 	"pulseaudio#volume": {
 		"name": "volume",
-		"format": "{icon} {volume}%",
-		"format-bluetooth": "{icon} {volume}%",
-		"format-muted": " Muted",
+		"format": "{volume}% {icon}",
+		"format-bluetooth": "{volume}% {icon}",
+		"format-muted": "Muted ",
 		"format-icons": {
 			"headphone": "",
 			"hands-free": "",
@@ -154,8 +154,8 @@
 	"pulseaudio#microphone": {
 		"name": "microphone",
 		"format": "{format_source}",
-		"format-source": " {volume}%",
-		"format-source-muted": " Muted",
+		"format-source": "{volume}% ",
+		"format-source-muted": "Muted ",
 		"on-click": "pactl set-source-mute @DEFAULT_SOURCE@ toggle",
 		"on-click-right": "pavucontrol -t 4",
 		"on-scroll-up": "pactl set-source-volume @DEFAULT_SOURCE@ +5%",
@@ -175,11 +175,11 @@
 	},
 	"network": {
 		"name": "status",
-		"format": "{ifname}",
-		"format-wifi": "{icon} {signalStrength}%",
+		"format": "{ifname} 󰌘",
+		"format-wifi": "{signalStrength}% {icon}",
 		"format-ethernet": "󰌘",
 		"format-disconnected": "󰌙",
-		"format-linked": "󰈁 {ifname}",
+		"format-linked": "{ifname} 󰈁",
 		"tooltip-format": "{ipaddr}  {bandwidthUpBits}  {bandwidthDownBits}",
 		"tooltip-format-wifi": "{essid}  {bandwidthUpBits}  {bandwidthDownBits}",
 		"tooltip-format-ethernet": "{ifname}  {bandwidthUpBits}  {bandwidthDownBits}",
@@ -195,13 +195,13 @@
 		"on-click": "nm-connection-editor"
 	},
 	"bluetooth": {
-		"format": " {status}",
-		"format-disabled": "󰂳 Off",
-		"format-connected": "󰂱 {num_connections}",
+		"format": "{status} ",
+		"format-disabled": "Off 󰂳",
+		"format-connected": "{num_connections} 󰂱",
 		"tooltip-format": "{device_alias}",
 		"tooltip-format-connected": "{device_enumerate}",
 		"tooltip-format-enumerate-connected": "{device_alias}",
-		"tooltip-format-enumerate-connected-battery": "{device_alias} | {device_battery_percentage}%",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}: {device_battery_percentage}%",
 		"tooltip-format-disabled": "Disabled",
 		"tooltip": true,
 		"min-length": 4,
@@ -209,7 +209,7 @@
 	},
 	"clock": {
 		"interval": 1,
-		"format": "{:%I:%M:%S %p}", // AM PM format
+		"format": "⏲ {:%I:%M:%S %p |  %a %d %b %Y}", // AM PM format
 		"tooltip-format": "<tt><small>{calendar}</small></tt>",
 		"calendar": {
 			"mode": "month",
@@ -236,7 +236,7 @@
 		]
 	},
 	"backlight": {
-		"format": "{icon} {percent}%",
+		"format": "{percent}% {icon}",
 		"format-icons": [
 			"",
 			"",
@@ -257,22 +257,16 @@
 			"warning": 30,
 			"critical": 15
 		},
-		"format": "{icon} {capacity}%",
-		"format-charging": " {capacity}%",
-		"format-plugged": "󱘖 {capacity}%",
-		"format-full": "󰁹 {capacity}%",
+		"format": "{capacity}% {icon}",
+		"format-charging": "{capicity}% ",
+		"format-plugged": "{capacity}% 󱘖",
+		"format-full": "{capacity}% ",
 		"format-icons": [
-			"󰂎",
-			"󰁺",
-			"󰁻",
-			"󰁼",
-			"󰁽",
-			"󰁾",
-			"󰁿",
-			"󰂀",
-			"󰂁",
-			"󰂂",
-			"󰁹",
+			"",
+			"",
+			"",
+			"",
+			"",
 		],
 		"format-time": "{H}h {M}min",
 		"tooltip": true,
