@@ -12,19 +12,20 @@
 	"modules-left": [
 		"group/boot",
 		"hyprland/workspaces",
+		"mpris",
 		"hyprland/window",
 	],
 	"modules-center": [
 		"clock"
 	],
 	"modules-right": [
-		"mpris",
 		"group/motherboard",
-		"gamemode",
-		"idle_inhibitor",
 		"group/audio",
 		"group/laptop",
 		"group/connections",
+		"idle_inhibitor",
+		"gamemode",
 		"tray",
+		"custom/swaync",
 	],
 }

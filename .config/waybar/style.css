@@ -8,15 +8,21 @@
 
 /* Tokyo Night Colour Scheme */
 @define-color light_crimson #f7768e;
+@define-color sundown #f9b4b5;
 @define-color atomic_tangerine #ff9e64;
 @define-color fawn #e0af68;
 @define-color pistachio #9ece6a;
+@define-color green_peas #85c144;
 @define-color pearl_aqua #73daca;
 @define-color celeste #b4f9f8;
 @define-color battery_charged_blue #2ac3de;
+@define-color dark_turquoise #1ad1b8;
+@define-color light_turquoise #76f7df;
 @define-color light_sky_blue #7dcfff;
 @define-color french_sky_blue #7aa2f7;
 @define-color pale_violet #bb9af7;
+@define-color biloba_flower #9b6bf3;
+@define-color amethyst #9a6ace;
 @define-color vodka #c0caf5;
 @define-color wild_blue_yonder #a9b1d6;
 @define-color blue_bell #9aa5ce;
@@ -50,25 +56,37 @@
 @define-color text_light @vodka;
 @define-color text_dark @background;
 
-@define-color base #1e1e2e;
-@define-color mantle #181825;
-@define-color crust #11111b;
-
-@define-color subtext0 #a6adc8;
-@define-color subtext1 #bac2de;
-
-@define-color surface0 #313244;
-@define-color surface1 #45475a;
-@define-color surface2 #585b70;
-
-@define-color overlay0 #6c7086;
-@define-color overlay1 #7f849c;
-@define-color overlay2 #9399b2;
-
 @keyframes blink {
 	to {
-		background-color: @pastel_gray;
+		background-color: @text_light;
 		color: @background;
+	}
+}
+
+@keyframes bounce {
+	10% {
+		padding: 0 13px;
+		/* start by scaling to 30% */
+	}
+
+	30% {
+		padding: 0 10px;
+		/* scale up to 100% */
+	}
+
+	60% {
+		padding: 0 5px;
+		/* scale down to 50% */
+	}
+
+	80% {
+		padding: 0 8px;
+		/* scale up to 75% */
+	}
+
+	100% {
+		padding: 0 6px;
+		/* scale down to 60% */
 	}
 }
 
@@ -84,7 +102,7 @@ tooltip {
 
 .modules-right {
 	background-color: @background;
-	border-radius: 10px;
+	border-radius: 6px;
 	padding: 10px 10px;
 }
 
@@ -96,19 +114,20 @@ tooltip {
 
 .modules-left {
 	background-color: @background;
-	border-radius: 10px;
+	border-radius: 6px;
 	padding: 10px 10px;
 }
 
 #custom-arch-icon {
 	font-size: 24px;
-	background-color: @light_silver;
+	background-color: @pale_violet;
 	color: @arch_logo;
 	padding: 0 14px;
 	border-radius: 10px;
 }
 
 #custom-shutdown {
+	margin: 0 0 0 2px;
 	background: @light_crimson;
 	color: @text_dark;
 	padding: 0 14px;
@@ -116,6 +135,7 @@ tooltip {
 }
 
 #custom-reboot {
+	margin: 0 0 0 2px;
 	background: @pistachio;
 	color: @text_dark;
 	padding: 0 14px;
@@ -123,6 +143,7 @@ tooltip {
 }
 
 #custom-lock {
+	margin: 0 0 0 2px;
 	background: @fawn;
 	color: @text_dark;
 	padding: 0 14px;
@@ -130,6 +151,7 @@ tooltip {
 }
 
 #custom-quit {
+	margin: 0 0 0 2px;
 	background: @light_sky_blue;
 	color: @text_dark;
 	padding: 0 14px;
@@ -145,12 +167,14 @@ tooltip {
 }
 
 #workspaces button.active {
+	border: 1px groove @french_sky_blue;
 	background: @french_sky_blue;
 	color: @text_dark;
-	transition: background 0.5s, color 0.5s;
+	transition: border 0.5s, background 0.5s, color 0.5s;
 }
 
-#workspaces button.urgent {
+#workspaces button.empty {
+	border: 1px groove @light_crimson;
 	background: @light_crimson;
 	color: @text_dark;
 	animation-name: blink;
@@ -161,7 +185,7 @@ tooltip {
 }
 
 #window {
-	background: @light_silver;
+	background: @amethyst;
 	color: @text_dark;
 	border-radius: 10px;
 	padding: 0 10px;
@@ -169,14 +193,20 @@ tooltip {
 
 /* make window module transparent when no windows present */
 window#waybar.empty #window {
+	background: @background;
 	border: none;
 }
 
 #mpris {
-	background: @light_silver;
+	background: @pistachio;
 	color: @text_dark;
 	padding: 0 10px;
 	border-radius: 10px;
+	animation: bounce 2.2s ease infinite alternate;
+}
+
+#mpris.playing {
+	background: @green_peas;
 }
 
 #cpu {
@@ -188,7 +218,7 @@ window#waybar.empty #window {
 }
 
 #memory {
-	background-color: @light_sky_blue;
+	background-color: @sundown;
 	color: @text_dark;
 	padding: 0 10px;
 	border-radius: 10px;
@@ -196,6 +226,7 @@ window#waybar.empty #window {
 }
 
 #bluetooth {
+	margin: 0 0 0 2px;
 	background-color: @light_crimson;
 	color: @text_dark;
 	border-radius: 10px;
@@ -204,7 +235,7 @@ window#waybar.empty #window {
 }
 
 #bluetooth.on {
-	background-color: @light_sky_blue;
+	background-color: @green_peas;
 }
 
 #network {
@@ -255,8 +286,9 @@ window#waybar.empty #window {
 }
 
 #backlight {
+	margin: 0 0 0 2px;
 	padding: 1px 10px 0px 10px;
-	background-color: @fawn;
+	background-color: @dark_turquoise;
 	color: @text_dark;
 	border-radius: 10px;
 }
@@ -278,7 +310,8 @@ window#waybar.empty #window {
 }
 
 #pulseaudio.microphone {
-	background-color: @wild_blue_yonder;
+	margin: 0 0 0 2px;
+	background-color: @biloba_flower;
 }
 
 #pulseaudio.microphone.source-muted {
@@ -295,13 +328,20 @@ window#waybar.empty #window {
 }
 
 #idle_inhibitor.activated {
-	background-color: @ucla_blue;
-	color: @text_light;
+	background-color: @light_turquoise;
 }
 
 #gamemode {
 	padding: 0 6px 0 10px;
+	background-color: @atomic_tangerine;
+	color: @text_dark;
+	border-radius: 10px;
+}
+
+#custom-swaync {
+	padding: 0 10px;
 	background-color: @pearl_aqua;
 	color: @text_dark;
 	border-radius: 10px;
+
 }
