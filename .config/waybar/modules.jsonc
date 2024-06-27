@@ -276,6 +276,7 @@
 		"interval": 1,
 		"format": "{player_icon} {status_icon} {title}",
 		"format-paused": "{player_icon} {status_icon} {title}",
+		"title-len": 20,
 		"tooltip-format": "{player}: {album} - {title} by {artist} | {position}/{length}",
 		"on-click-middle": "playerctl play-pause",
 		"on-click": "playerctl previous",
