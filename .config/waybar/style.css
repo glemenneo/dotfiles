@@ -173,7 +173,7 @@ tooltip {
 	transition: border 0.5s, background 0.5s, color 0.5s;
 }
 
-#workspaces button.empty {
+#workspaces button.urgent {
 	border: 1px groove @light_crimson;
 	background: @light_crimson;
 	color: @text_dark;
