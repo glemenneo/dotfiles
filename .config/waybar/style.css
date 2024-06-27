@@ -198,14 +198,15 @@ window#waybar.empty #window {
 }
 
 #mpris {
-	background: @pistachio;
+	background: @wild_blue_yonder;
 	color: @text_dark;
 	padding: 0 10px;
 	border-radius: 10px;
-	animation: bounce 2.2s ease infinite alternate;
+	animation: none;
 }
 
 #mpris.playing {
+	animation: bounce 2.2s ease infinite alternate;
 	background: @green_peas;
 }
 
