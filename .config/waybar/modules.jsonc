@@ -258,7 +258,7 @@
 			"critical": 15
 		},
 		"format": "{capacity}% {icon}",
-		"format-charging": "{capicity}% ",
+		"format-charging": "{capacity}% ",
 		"format-plugged": "{capacity}% 󱘖",
 		"format-full": "{capacity}% ",
 		"format-icons": [
@@ -266,7 +266,7 @@
 			"",
 			"",
 			"",
-			"",
+			""
 		],
 		"format-time": "{H}h {M}min",
 		"tooltip": true,
