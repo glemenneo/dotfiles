@@ -16,7 +16,7 @@
 	"custom/arch-icon": {
 		"format": "",
 		"tooltip": false,
-		"on-click": "kitty sh -c 'neofetch'",
+		"on-click": "kitty --hold sh -c 'neofetch'",
 	},
 	"custom/shutdown": {
 		"format": "",
