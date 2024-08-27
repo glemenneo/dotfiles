@@ -111,7 +111,7 @@
 	},
 	"tray": {
 		"icon-size": 20,
-		"spacing": 10
+		"spacing": 4
 	},
 	"group/audio": {
 		"orientation": "horizontal",
