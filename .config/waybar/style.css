@@ -235,8 +235,7 @@ window#waybar.empty #window {
 }
 
 #tray {
-	margin: 0px 6px 0px 0px;
-	background: @background;
+	margin: 0px 4px 0px 0px;
 }
 
 #backlight {
@@ -261,7 +260,7 @@ window#waybar.empty #window {
 }
 
 #idle_inhibitor {
-	margin: 0px 4px;
+	padding: 0px 4px;
 	font-size: 22px;
 	transition: color 0.5s;
 }
@@ -271,7 +270,8 @@ window#waybar.empty #window {
 }
 
 #gamemode {
-	margin: 0px 4px;
+	margin: 0px 2px;
+	padding: 0px 0px 0px 4px;
 	color: @atomic_tangerine;
 }
 
