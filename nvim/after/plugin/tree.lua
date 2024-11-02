@@ -1,6 +1,6 @@
 require("nvim-tree").setup({
     disable_netrw = false,
-    hijack_netrw = true,
+    hijack_netrw = false,
     sort = {
         sorter = "case_sensitive",
     },
@@ -18,6 +18,6 @@ require("nvim-tree").setup({
 local api = require "nvim-tree.api"
 
 vim.keymap.set("n", "<C-b>", api.tree.toggle)
-vim.keymap.set("n", "<leader>fv", api.tree.open)
+-- vim.keymap.set("n", "<leader>fv", api.tree.open)
 
 
