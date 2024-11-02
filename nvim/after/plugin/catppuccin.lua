@@ -2,7 +2,9 @@ require("catppuccin").setup({
     flavour = "mocha",
     transparent_background = true,
     integrations = {
+        cmp = true,
         treesitter = true,
+        nvimtree = true,
         telescope = {
             enabled = true,
             -- style = "nvchad"
