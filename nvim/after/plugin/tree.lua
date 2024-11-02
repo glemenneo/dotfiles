@@ -17,7 +17,7 @@ require("nvim-tree").setup({
 
 local api = require "nvim-tree.api"
 
-vim.keymap.set("n", "<C-b>", api.tree.toggle)
+vim.keymap.set("n", "<C-b>", api.tree.toggle, {desc = "Toggle NvimTree side bar"})
 -- vim.keymap.set("n", "<leader>fv", api.tree.open)
 
 
