@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { buffer = event.buf, desc = "Display signature information" })
         vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.rename()<cr>',
             { buffer = event.buf, desc = "Rename all references" })
-        vim.keymap.set({ 'n', 'x' }, '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
+        vim.keymap.set({ 'n', 'x' }, '<leader>zf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
             { buffer = event.buf, desc = "Format all code" })
         vim.keymap.set('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>',
             { buffer = event.buf, desc = "Select a code action" })
