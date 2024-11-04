@@ -1,8 +1,8 @@
 local wk = require("which-key")
 wk.add({
     { "<leader>f",  group = "File" }, -- group
-    { "<leader>g", group = "LSP"},
-    { "<leader>h", group = "Git"},
+    { "<leader>z", group = "LSP"},
+    { "<leader>g", group = "Git"},
     {
         -- Nested mappings are allowed and can be added in any order
         -- Most attributes can be inherited or overridden on any level

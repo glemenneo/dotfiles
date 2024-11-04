@@ -16,19 +16,19 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
-        vim.keymap.set('n', '<leader>gk', '<cmd>lua vim.lsp.buf.hover()<cr>',
+        vim.keymap.set('n', '<leader>zk', '<cmd>lua vim.lsp.buf.hover()<cr>',
             { buffer = event.buf, desc = "Display hover information" })
-        vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>',
+        vim.keymap.set('n', '<leader>zd', '<cmd>lua vim.lsp.buf.definition()<cr>',
             { buffer = event.buf, desc = "Jump to the definition" })
-        vim.keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<cr>',
+        vim.keymap.set('n', '<leader>zD', '<cmd>lua vim.lsp.buf.declaration()<cr>',
             { buffer = event.buf, desc = "Jump to the declaration" })
-        vim.keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
+        vim.keymap.set('n', '<leader>zi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
             { buffer = event.buf, desc = "List all implementations" })
-        vim.keymap.set('n', '<leader>go', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+        vim.keymap.set('n', '<leader>zo', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
             { buffer = event.buf, desc = "Jump to the type definition" })
-        vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>',
+        vim.keymap.set('n', '<leader>zr', '<cmd>lua vim.lsp.buf.references()<cr>',
             { buffer = event.buf, desc = "List all references" })
-        vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+        vim.keymap.set('n', '<leader>zs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
             { buffer = event.buf, desc = "Display signature information" })
         vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.rename()<cr>',
             { buffer = event.buf, desc = "Rename all references" })
