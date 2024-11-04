@@ -1,1 +1,1 @@
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git, {desc = "Open git visualiser"})
+vim.keymap.set("n", "<leader>hs", vim.cmd.Git, {desc = "Open git visualiser"})

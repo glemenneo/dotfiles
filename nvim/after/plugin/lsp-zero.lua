@@ -16,18 +16,26 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
-        local opts = { buffer = event.buf }
-
-        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set('n', '<leader>gk', '<cmd>lua vim.lsp.buf.hover()<cr>',
+            { buffer = event.buf, desc = "Display hover information" })
+        vim.keymap.set('n', '<leader>gd', '<cmd>lua vim.lsp.buf.definition()<cr>',
+            { buffer = event.buf, desc = "Jump to the definition" })
+        vim.keymap.set('n', '<leader>gD', '<cmd>lua vim.lsp.buf.declaration()<cr>',
+            { buffer = event.buf, desc = "Jump to the declaration" })
+        vim.keymap.set('n', '<leader>gi', '<cmd>lua vim.lsp.buf.implementation()<cr>',
+            { buffer = event.buf, desc = "List all implementations" })
+        vim.keymap.set('n', '<leader>go', '<cmd>lua vim.lsp.buf.type_definition()<cr>',
+            { buffer = event.buf, desc = "Jump to the type definition" })
+        vim.keymap.set('n', '<leader>gr', '<cmd>lua vim.lsp.buf.references()<cr>',
+            { buffer = event.buf, desc = "List all references" })
+        vim.keymap.set('n', '<leader>gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>',
+            { buffer = event.buf, desc = "Display signature information" })
+        vim.keymap.set('n', '<leader>s', '<cmd>lua vim.lsp.buf.rename()<cr>',
+            { buffer = event.buf, desc = "Rename all references" })
+        vim.keymap.set({ 'n', 'x' }, '<leader>gf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
+            { buffer = event.buf, desc = "Format all code" })
+        vim.keymap.set('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<cr>',
+            { buffer = event.buf, desc = "Select a code action" })
     end,
 })
 

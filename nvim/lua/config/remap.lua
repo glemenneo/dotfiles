@@ -23,13 +23,13 @@ vim.keymap.set('v', '<A-Down>', ":m '>+1<CR>gv=gv", { desc = "Move current line 
 vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv", { desc = "Move current line up" })
 
 -- Space+s to auto format file
-vim.keymap.set("n", "<leader>f", function()
-    vim.lsp.buf.format()
-end, { desc = "Auto format buffer" })
+-- vim.keymap.set("n", "<leader>f", function()
+-- vim.lsp.buf.format()
+-- end, { desc = "Auto format buffer" })
 
 -- Space+s to replace all instances of word under cursor
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Replace all occurences of the current word" })
+-- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    -- { desc = "Replace all occurences of the current word" })
 
 -- Tab/Shift+tab to indent/dedent
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent line" })
