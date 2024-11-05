@@ -37,3 +37,8 @@ vim.keymap.set("n", "<Tab>", "v><C-\\><C-N>", { desc = "Indent line" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Dedent line" })
 vim.keymap.set("n", "<S-Tab>", "v<<C-\\><C-N>", { desc = "Dedent line" })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Dedent line" })
+
+-- Scrolling
+vim.keymap.set("n", "<C-j>", "j<C-E>")
+vim.keymap.set("n", "<C-k>", "k<C-Y>")
+
