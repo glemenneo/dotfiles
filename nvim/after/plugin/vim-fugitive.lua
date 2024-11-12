@@ -5,5 +5,6 @@ vim.keymap.set("n", "<leader>gp", ":G push<CR>", {desc = "Git push"})
 vim.keymap.set("n", "<leader>gl", ":G pull<CR>", {desc = "Git pull"})
 vim.keymap.set("n", "<leader>gf", ":G fetch<CR>", {desc = "Git fetch"})
 vim.keymap.set("n", "<leader>gb", ":G blame<CR>", {desc = "Git blame"})
+vim.keymap.set("n", "<leader>gc", ":G commit<CR>", {desc = "Git commit"})
 
 
