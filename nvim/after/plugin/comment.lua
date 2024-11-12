@@ -1,12 +1,12 @@
 require('Comment').setup(
     {
         toggler = {
-            line = "<leader>c",
-            block = "<leader>b",
+            line = "<leader>/",
+            block = "<leader>?",
         },
         opleader = {
-            line = '<leader>c',
-            block = '<leader>b',
+            line = '<leader>/',
+            block = '<leader>?',
         }
     }
 )
