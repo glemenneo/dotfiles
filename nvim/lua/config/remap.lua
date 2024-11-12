@@ -42,3 +42,5 @@ vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Dedent line" })
 vim.keymap.set("n", "<C-j>", "j<C-E>")
 vim.keymap.set("n", "<C-k>", "k<C-Y>")
 
+-- Checkhealth
+vim.keymap.set("n", "<leader>h", ":checkhealth<CR>", { desc = "Checkhealth" })
