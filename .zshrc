@@ -14,6 +14,7 @@ compinit
 
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
+  export TERM='xterm-color'
 else
   export EDITOR='nvim'
 fi
