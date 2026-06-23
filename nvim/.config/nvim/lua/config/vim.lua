@@ -20,3 +20,5 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "120"
 
 vim.api.nvim_set_option("clipboard", "unnamed")
+
+vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true }, })
