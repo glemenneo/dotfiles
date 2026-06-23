@@ -22,21 +22,26 @@ fi
 # Machine-specific config (not tracked in dotfiles repo)
 [[ -s "${HOME}/.zshrc.local" ]] && source "${HOME}/.zshrc.local"
 
+# Zsh-vi-mode callback to bind fzf key-bindings after initialization
+function zvm_after_init() {
+  # macOS
+  [[ -s "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" ]] && source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
+  
+  # Linux (Arch)
+  [[ -s "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
+}
+
 # ── macOS ──
 if [[ "$(uname)" == "Darwin" ]]; then
   source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
   source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
   # fzf
-  [[ -s "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" ]] && source "/opt/homebrew/opt/fzf/shell/key-bindings.zsh"
   [[ -s "/opt/homebrew/opt/fzf/shell/completion.zsh" ]] && source "/opt/homebrew/opt/fzf/shell/completion.zsh"
 
   # Zsh-vi-mode
   [[ -s "/opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh" ]] && \
     source /opt/homebrew/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-  # fzf Ctrl+R in vi mode
-  bindkey -M viins '^R' fzf-history-widget
 
   export PNPM_HOME="${HOME}/Library/pnpm"
   case ":$PATH:" in
@@ -61,7 +66,6 @@ if [[ "$(uname)" == "Linux" ]]; then
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     # fzf
-    [[ -s "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
     [[ -s "/usr/share/fzf/completion.zsh" ]] && source "/usr/share/fzf/completion.zsh"
 
     source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
