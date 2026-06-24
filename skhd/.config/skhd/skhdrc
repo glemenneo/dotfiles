@@ -1,6 +1,6 @@
 alt-q: open -a kitty ~ 
 alt-e: open -a finder ~
-alt-c: skhd --key "cmd - w"
+alt-c: yabai -m window --close
 alt-space: skhd --key "cmd - space"
 
 # 窗口聚焦
@@ -46,7 +46,7 @@ shift+alt-d: yabai -m window --resize right:50:0; yabai -m window --resize left:
 shift+alt-1: yabai -m window --space 1 --focus
 shift+alt-2: yabai -m window --space 2 --focus
 shift+alt-3: yabai -m window --space 3 --focus
-shift+alt-4: yabai -m window --space 2 --focus
+shift+alt-4: yabai -m window --space 4 --focus
 
 # alt-1: yabai -m display --focus 1
 # alt-2: yabai -m display --focus 2
