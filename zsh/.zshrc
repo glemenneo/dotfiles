@@ -7,6 +7,7 @@ export PATH="${HOME}/.local/bin:$PATH"
 export PATH="$HOME/.grok/bin:$PATH"
 fpath=(~/.grok/completions/zsh $fpath)
 # <<< grok installer <<<
+fpath=(~/.zsh/completions $fpath)  # user completions (e.g. OpenSpec)
 
 # History (required for zsh-autosuggestions' `history` strategy to work)
 HISTFILE="${HOME}/.zsh_history"
@@ -21,6 +22,9 @@ setopt HIST_VERIFY            # on history expansion, reload the line instead of
 
 alias vi="nvim"
 alias vim="nvim"
+
+# kitty: copy terminfo to the remote on connect so keys aren't garbled
+command -v kitten >/dev/null 2>&1 && alias kssh='kitten ssh'
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
