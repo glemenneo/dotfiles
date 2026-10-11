@@ -26,12 +26,31 @@ alias vim="nvim"
 # kitty: copy terminfo to the remote on connect so keys aren't garbled
 command -v kitten >/dev/null 2>&1 && alias kssh='kitten ssh'
 
+# Drop-in replacements, only where installed
+(( $+commands[bfs] )) && alias find=bfs
+(( $+commands[jaq] )) && alias jq=jaq
+if (( $+commands[moor] )); then
+  export PAGER=moor
+  export DELTA_PAGER=less    # delta's n/N file jumps need less
+  export SYSTEMD_PAGER=less  # journalctl -e needs less to start at the end
+fi
+
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
 
 autoload -Uz compinit
 # full security check at most once a day, cached otherwise
 () { (( $# )) && compinit || compinit -C } ${ZDOTDIR:-$HOME}/.zcompdump(N.mh+24)
+
+# After compinit, so `cd gen<Space><Tab>` gets zoxide's picker
+eval "$(zoxide init zsh --cmd cd)"
+
+# Alt+Z: pick a frecent dir with zoxide and insert it at the cursor (ls, cp, nvim, yazi...)
+zoxide-insert() {
+  local dir
+  dir=$(zoxide query -i) && LBUFFER+="${(q)dir} "
+  zle reset-prompt
+}
+zle -N zoxide-insert
 
 fastfetch
 
@@ -62,6 +81,8 @@ function zvm_after_init() {
   
   # Linux (Arch)
   [[ -s "/usr/share/fzf/key-bindings.zsh" ]] && source "/usr/share/fzf/key-bindings.zsh"
+
+  bindkey '^[z' zoxide-insert
 }
 
 # ── macOS ──
@@ -86,6 +107,9 @@ fi
 # ── Linux ──
 if [[ "$(uname)" == "Linux" ]]; then
   if [[ -f /etc/arch-release ]]; then
+    # fzf-tab: after compinit, before widget-wrapping plugins (fzf's ** completion falls through to it)
+    [[ -s /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh ]] && \
+      source /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh
     source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     # fzf
     [[ -s "/usr/share/fzf/completion.zsh" ]] && source "/usr/share/fzf/completion.zsh"
