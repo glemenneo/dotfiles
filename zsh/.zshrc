@@ -35,6 +35,14 @@ if (( $+commands[moor] )); then
   export SYSTEMD_PAGER=less  # journalctl -e needs less to start at the end
 fi
 
+# Tokyo Night file-type colours for ls, fd and Tab completion
+(( $+commands[vivid] )) && export LS_COLORS="$(vivid generate tokyonight-night)"
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# fzf in colour names, so Ctrl-R, Ctrl-T, Alt-C and fzf-tab follow the terminal theme
+export FZF_DEFAULT_OPTS='--color=fg:-1,bg:-1,hl:blue,fg+:bright-white,bg+:bright-black,hl+:cyan,info:yellow,prompt:magenta,pointer:magenta,marker:green,spinner:cyan,header:bright-black,border:bright-black,gutter:-1'
+zstyle ':fzf-tab:*' use-fzf-default-opts yes
+
 eval "$(starship init zsh)"
 
 autoload -Uz compinit
@@ -52,7 +60,8 @@ zoxide-insert() {
 }
 zle -N zoxide-insert
 
-fastfetch
+# Once per kitty window: not in splits, tmux panes or SSH sessions
+[[ -z $TMUX && $KITTY_WINDOW_ID == 1 ]] && fastfetch
 
 # SSH: set safe TERM and fallback editor when on a remote host
 if [[ -n $SSH_CONNECTION ]]; then
@@ -106,6 +115,7 @@ fi
 
 # ── Linux ──
 if [[ "$(uname)" == "Linux" ]]; then
+  alias ls='ls --color=auto'  # GNU ls; colours come from LS_COLORS
   if [[ -f /etc/arch-release ]]; then
     # fzf-tab: after compinit, before widget-wrapping plugins (fzf's ** completion falls through to it)
     [[ -s /usr/share/zsh/plugins/fzf-tab-git/fzf-tab.plugin.zsh ]] && \

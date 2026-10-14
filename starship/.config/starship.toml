@@ -1,4 +1,9 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Colour names only, so the prompt follows the terminal theme
+# (Tokyo Night in kitty, whatever Termius uses on the phone).
 format = """
+$os\
 $directory\
 $git_branch\
 $git_status\
@@ -20,9 +25,18 @@ $character"""
 
 add_newline = true
 
+[os]
+disabled = false
+style = 'bold blue'
+format = '[$symbol ]($style)'
+
+[os.symbols]
+Arch = '󰣇'
+
 [directory]
-style = 'bold fg:dark_blue'
-format = '[$path ]($style)'
+style = 'bold cyan'
+read_only = ' 󰌾'
+format = '[$path]($style)[$read_only]($read_only_style) '
 truncation_length = 3
 truncation_symbol = '…/'
 truncate_to_repo = false
@@ -34,19 +48,19 @@ truncate_to_repo = false
 'Pictures' = ' '
 
 [git_branch]
-style = 'fg:green'
+style = 'purple'
 symbol = ' '
-format = '[on](white) [$symbol$branch ]($style)'
+format = '[on](bright-black) [$symbol$branch]($style) '
 
 [git_status]
-style = 'fg:green'
-format = '([$all_status$ahead_behind]($style) )'
+style = 'yellow'
+format = '([\[$all_status$ahead_behind\]]($style) )'
 
 [fill]
 symbol = ' '
 
 [python]
-style = 'teal'
+style = 'yellow'
 symbol = ' '
 format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
 pyenv_version_name = true
@@ -56,23 +70,23 @@ pyenv_prefix = ''
 symbol = ' '
 
 [nodejs]
-style = 'blue'
+style = 'green'
 symbol = ' '
 
 [golang]
-style = 'blue'
+style = 'cyan'
 symbol = ' '
 
 [haskell]
-style = 'blue'
+style = 'purple'
 symbol = ' '
 
 [rust]
-style = 'orange'
+style = 'red'
 symbol = ' '
 
 [ruby]
-style = 'blue'
+style = 'red'
 symbol = ' '
 
 [package]
@@ -85,7 +99,7 @@ format = '[$symbol($profile )(\[$duration\] )]($style)'
 
 [docker_context]
 symbol = ' '
-style = 'fg:#06969A'
+style = 'blue'
 format = '[$symbol]($style) $path'
 detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
 detect_extensions = ['Dockerfile']
@@ -98,6 +112,10 @@ format = '[$symbol]($style)'
 
 [cmd_duration]
 min_time = 500
-style = 'fg:gray'
-format = '[$duration]($style)'
+style = 'bright-black'
+format = '[ $duration]($style)'
 
+[character]
+success_symbol = '[❯](bold green)'
+error_symbol = '[❯](bold red)'
+vimcmd_symbol = '[❮](bold purple)'

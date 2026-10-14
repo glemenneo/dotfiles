@@ -19,7 +19,7 @@ cd ~/Documents/dotfiles
 stow -t ~ zsh starship nvim kitty tmux skhd yabai
 
 # Linux
-stow -t ~ zsh starship nvim kitty tmux hypr waybar
+stow -t ~ zsh starship nvim kitty tmux hypr waybar fastfetch
 ```
 
 The `-t ~` flag is required because the stow directory lives inside
