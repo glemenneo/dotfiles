@@ -1,0 +1,36 @@
+#!/bin/sh
+# Global git hooks (core.hooksPath in ~/.gitconfig). Every hook name here links to this file.
+# core.hooksPath stops git from running a repo's own .git/hooks, so after the global part
+# this hands off to the repo's hook of the same name, or to git-lfs.
+name=${0##*/}
+
+# Block commits that add secrets
+if [ "$name" = pre-commit ]; then
+  if command -v gitleaks >/dev/null 2>&1; then
+    out=$(gitleaks git --pre-commit --staged --redact --no-banner 2>&1); rc=$?
+    printf '%s\n' "$out" >&2
+    [ "$rc" -eq 0 ] || exit 1
+    # When its own git call writes to stderr (GIT_TRACE, rename-limit warnings on big commits)
+    # gitleaks logs ERR, skips the scan and still exits 0, so fail closed.
+    case $out in *ERR*)
+      echo "pre-commit: gitleaks hit an error, so the scan can't be trusted; commit blocked" >&2
+      exit 1 ;;
+    esac
+  else
+    echo "pre-commit: gitleaks not installed, secret scan skipped" >&2
+  fi
+fi
+
+common=$(git rev-parse --git-common-dir) || exit 0
+if [ -x "$common/hooks/$name" ]; then
+  exec "$common/hooks/$name" "$@"
+fi
+# Repos cloned after core.hooksPath was set get no git-lfs hooks of their own;
+# without pre-push, LFS files would never be uploaded.
+case $name in
+  pre-push|post-checkout|post-commit|post-merge)
+    if [ -d "$common/lfs" ] && command -v git-lfs >/dev/null 2>&1; then
+      exec git lfs "$name" "$@"
+    fi ;;
+esac
+exit 0

@@ -16,10 +16,14 @@ brew install stow        # macOS
 cd ~/Documents/dotfiles
 
 # macOS
-stow -t ~ zsh starship nvim kitty tmux skhd yabai yazi
+stow -t ~ zsh starship nvim kitty tmux skhd yabai
 
 # Linux
-stow -t ~ zsh starship nvim kitty tmux hypr waybar fastfetch claude yazi
+stow -t ~ zsh starship nvim kitty tmux hypr waybar fastfetch claude
+
+# Both; git needs delta, git-lfs and gitleaks installed. No folding keeps the
+# folders real, so files tools add there (yazi plugins, git credentials) stay out of this repo.
+stow --no-folding -t ~ git yazi
 ```
 
 The `-t ~` flag is required because the stow directory lives inside
@@ -41,3 +45,4 @@ The `-t ~` flag is required because the stow directory lives inside
 | `fastfetch`| `.config/fastfetch/config.jsonc`                | Linux only  |
 | `claude`  | `.claude/statusline.sh` (Claude Code status line) | Linux only  |
 | `yazi`    | `.config/yazi/theme.toml` (Tokyo Night)          | both        |
+| `git`     | `.gitconfig`, `.config/git/` (global ignore, hooks: gitleaks before every commit) | both |
