@@ -16,10 +16,10 @@ brew install stow        # macOS
 cd ~/Documents/dotfiles
 
 # macOS
-stow -t ~ zsh starship nvim kitty tmux skhd yabai
+stow -t ~ zsh starship nvim kitty tmux skhd yabai yazi
 
 # Linux
-stow -t ~ zsh starship nvim kitty tmux hypr waybar fastfetch claude
+stow -t ~ zsh starship nvim kitty tmux hypr waybar fastfetch claude yazi
 ```
 
 The `-t ~` flag is required because the stow directory lives inside
@@ -38,3 +38,6 @@ The `-t ~` flag is required because the stow directory lives inside
 | `yabai`   | `.config/yabai/yabairc`                          | macOS only  |
 | `hypr`    | `.config/hypr/`                                  | Linux only  |
 | `waybar`  | `.config/waybar/`                                | Linux only  |
+| `fastfetch`| `.config/fastfetch/config.jsonc`                | Linux only  |
+| `claude`  | `.claude/statusline.sh` (Claude Code status line) | Linux only  |
+| `yazi`    | `.config/yazi/theme.toml` (Tokyo Night)          | both        |
