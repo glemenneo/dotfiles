@@ -10,6 +10,31 @@ brew install stow        # macOS
 # or: emerge stow        # Gentoo
 ```
 
+Tools the configs use (Arch):
+
+```bash
+sudo pacman -S --needed \
+  stow zsh zsh-autosuggestions zsh-syntax-highlighting fzf zoxide starship nvm \
+  vivid bfs jaq moor \
+  kitty ttf-jetbrains-mono-nerd shader-slang tmux fastfetch \
+  git git-delta git-lfs gitleaks jq \
+  neovim tree-sitter-cli gcc ripgrep fd wl-clipboard go nodejs npm unzip \
+  yazi tdf glow mediainfo trash-cli udisks2 resvg ffmpeg 7zip poppler imagemagick chafa
+yay -S zsh-vi-mode fzf-tab-git
+```
+
+| Package | Tools |
+|---------|-------|
+| `zsh` | autosuggestions, syntax-highlighting, zsh-vi-mode, fzf-tab, fzf, zoxide, starship, nvm; vivid, bfs, jaq, moor are used only if installed |
+| `kitty` | JetBrainsMono Nerd Font; shader-slang for the cursor-trail shader |
+| `git` | delta (pager), git-lfs, gitleaks (secret scan before every commit) |
+| `claude` | jq |
+| `nvim` | tree-sitter-cli + gcc (parsers), ripgrep + fd (fzf-lua), wl-clipboard, go (gopls, delve), nodejs/npm (TypeScript), unzip (mason) |
+| `yazi` | tdf (PDFs), glow (Markdown), mediainfo, trash-cli (restore), udisks2 (mount), resvg, ffmpeg, 7zip, poppler, imagemagick, chafa |
+
+Neovim installs its plugins, language servers and parsers on first start;
+yazi plugins come from `ya pkg install` after stowing.
+
 ## Deploy
 
 ```bash
