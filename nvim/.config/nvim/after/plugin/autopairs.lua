@@ -3,7 +3,7 @@ require("nvim-autopairs").setup({
     enable_check_bracket_line = false,
     check_ts = true,
     ts_config = {
-        lua = { "string" },                -- no pairs inside Lua strings
+        lua = { "string", "string_content" }, -- no pairs inside Lua strings (newer parsers name the inside string_content)
         javascript = { "template_string" },
         java = false,                      -- no treesitter check for Java
     },

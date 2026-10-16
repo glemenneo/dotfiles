@@ -1,24 +1,19 @@
-require 'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all" (the listed parsers MUST always be installed)
-    ensure_installed = { "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+-- nvim-treesitter (main branch) installs parsers; Neovim itself does the highlighting
+local ts = require("nvim-treesitter")
 
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+ts.install({ "javascript", "typescript", "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" })
 
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
-
-    ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
-    -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
-
-    highlight = {
-        enable = true,
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-    },
-}
+-- Highlight every filetype that has a parser; a missing one installs on first open (like the old auto_install)
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+        if pcall(vim.treesitter.start, args.buf) then return end
+        local lang = vim.treesitter.language.get_lang(args.match)
+        if lang and vim.list_contains(ts.get_available(), lang) then
+            ts.install(lang):await(function(err)
+                if not err then
+                    vim.schedule(function() pcall(vim.treesitter.start, args.buf) end)
+                end
+            end)
+        end
+    end,
+})
