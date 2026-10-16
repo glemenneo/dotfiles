@@ -2,11 +2,11 @@ vim.opt.nu = true
 vim.opt.relativenumber = true
 
 vim.opt.tabstop = 4
-vim.softtabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
-vim.smartindent = true
+vim.opt.smartindent = true
 
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -19,6 +19,6 @@ vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "120"
 
-vim.api.nvim_set_option("clipboard", "unnamedplus")
+vim.opt.clipboard = "unnamedplus"
 
 vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true }, })

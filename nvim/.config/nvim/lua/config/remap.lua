@@ -33,7 +33,6 @@ vim.keymap.set('v', '<A-Up>', ":m '<-2<CR>gv=gv", { desc = "Move current line up
 
 -- Tab/Shift+tab to indent/dedent
 vim.keymap.set("v", "<Tab>", ">gv", { desc = "Indent line" })
-vim.keymap.set("n", "<Tab>", "v><C-\\><C-N>", { desc = "Indent line" })
 vim.keymap.set("v", "<S-Tab>", "<gv", { desc = "Dedent line" })
 vim.keymap.set("n", "<S-Tab>", "v<<C-\\><C-N>", { desc = "Dedent line" })
 vim.keymap.set("i", "<S-Tab>", "<C-d>", { desc = "Dedent line" })

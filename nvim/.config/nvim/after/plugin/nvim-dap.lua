@@ -1,3 +1,6 @@
+local dap = require('dap')
+local dapui = require('dapui')
+
 require('dap-go').setup()
 require("dapui").setup()
 
