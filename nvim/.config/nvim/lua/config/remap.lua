@@ -1,8 +1,5 @@
 vim.g.mapleader = " "
 
--- Space+fv to open up Netrw
-vim.keymap.set("n", "<leader>fv", vim.cmd.Ex, { desc = "Open Netrw" })
-
 -- Alt+j/Down and Alt+k/Up to move line up or down 1 space
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move current line down" })
 vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move current line up" })
