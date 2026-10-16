@@ -60,6 +60,15 @@ zoxide-insert() {
 }
 zle -N zoxide-insert
 
+# y: yazi that leaves the shell in the last folder on q (Q quits without cd); from the yazi docs
+function y() {
+  local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+  command yazi "$@" --cwd-file="$tmp"
+  IFS= read -r -d '' cwd < "$tmp"
+  [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+  command rm -f -- "$tmp"
+}
+
 # Once per kitty window: not in splits, tmux panes or SSH sessions
 [[ -z $TMUX && $KITTY_WINDOW_ID == 1 ]] && fastfetch
 

@@ -44,5 +44,5 @@ The `-t ~` flag is required because the stow directory lives inside
 | `waybar`  | `.config/waybar/`                                | Linux only  |
 | `fastfetch`| `.config/fastfetch/config.jsonc`                | Linux only  |
 | `claude`  | `.claude/statusline.sh` (Claude Code status line) | Linux only  |
-| `yazi`    | `.config/yazi/theme.toml` (Tokyo Night)          | both        |
+| `yazi`    | `.config/yazi/` Tokyo Night theme, git and smart-enter plugins (run `ya pkg install` after stowing) | both |
 | `git`     | `.gitconfig`, `.config/git/` (global ignore, hooks: gitleaks before every commit) | both |
