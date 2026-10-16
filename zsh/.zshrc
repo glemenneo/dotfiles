@@ -3,10 +3,6 @@
 typeset -U PATH path FPATH fpath  # drop duplicate PATH/fpath entries
 export PATH="${HOME}/.local/bin:$PATH"
 
-# >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
-fpath=(~/.grok/completions/zsh $fpath)
-# <<< grok installer <<<
 fpath=(~/.zsh/completions $fpath)  # user completions (e.g. OpenSpec)
 
 # History (required for zsh-autosuggestions' `history` strategy to work)
