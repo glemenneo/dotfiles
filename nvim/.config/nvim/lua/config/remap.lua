@@ -40,3 +40,11 @@ vim.keymap.set("n", "<C-k>", "k<C-Y>")
 
 -- Checkhealth
 vim.keymap.set("n", "<leader>h", ":checkhealth<CR>", { desc = "Checkhealth" })
+
+-- Built-in commenting (Neovim 0.10+): gcc toggles a line, gc + motion or selection
+vim.keymap.set("n", "<leader>/", "gcc", { remap = true, desc = "Toggle comment on line" })
+vim.keymap.set("x", "<leader>/", "gc", { remap = true, desc = "Toggle comment on selection" })
+
+-- Built-in undotree (Neovim 0.12+); :Undotree toggles the window
+vim.cmd.packadd("nvim.undotree")
+vim.keymap.set("n", "<leader>u", vim.cmd.Undotree, { desc = "Toggle Undotree" })

@@ -22,3 +22,6 @@ vim.opt.colorcolumn = "120"
 vim.opt.clipboard = "unnamedplus"
 
 vim.diagnostic.config({ virtual_text = false, virtual_lines = { current_line = true }, })
+
+-- Always show the sign column (git and diagnostic marks) so text doesn't shift
+vim.opt.signcolumn = "yes"
