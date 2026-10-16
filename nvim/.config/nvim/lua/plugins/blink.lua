@@ -8,7 +8,13 @@ return {
         keymap = { preset = "default" },
         appearance = { nerd_font_variant = "mono" },
         completion = { documentation = { auto_show = true } },
-        sources = { default = { "lsp", "path", "snippets", "buffer" } },
+        sources = {
+            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+            providers = {
+                -- module names for require(...) in Lua config files, ranked first
+                lazydev = { name = "LazyDev", module = "lazydev.integrations.blink", score_offset = 100 },
+            },
+        },
         signature = { enabled = true },
     },
     opts_extend = { "sources.default" },
