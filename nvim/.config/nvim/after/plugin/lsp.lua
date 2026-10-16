@@ -2,14 +2,10 @@
 -- This will avoid an annoying layout shift in the screen
 vim.opt.signcolumn = 'yes'
 
--- Add cmp_nvim_lsp capabilities settings to lspconfig
--- This should be executed before you configure any language server
-local lspconfig_defaults = require('lspconfig').util.default_config
-lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-    'force',
-    lspconfig_defaults.capabilities,
-    require('cmp_nvim_lsp').default_capabilities()
-)
+-- nvim-cmp's completion capabilities for every server (Neovim 0.11+ vim.lsp.config)
+vim.lsp.config('*', {
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+})
 
 -- This is where you enable features that only work
 -- if there is a language server active in the file
@@ -39,14 +35,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
+-- mason installs the servers; mason-lspconfig v2 calls vim.lsp.enable() for each installed one
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    -- Replace the language servers listed here
-    -- with the ones you want to install
     ensure_installed = { 'lua_ls', 'rust_analyzer' },
-    handlers = {
-        function(server_name)
-            require('lspconfig')[server_name].setup({})
-        end,
-    },
 })
